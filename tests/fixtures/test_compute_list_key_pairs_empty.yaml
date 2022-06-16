@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Connection:
+      - keep-alive
+      Host:
+      - api.clo.ru
+      User-Agent:
+      - 'libcloud/3.6.0 (CLO) '
+    method: GET
+    uri: https://api.clo.ru/v1/keypairs
+  response:
+    body:
+      string: '{"code": 200, "title": "OK", "results": [], "count": 0}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '55'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 16 Jun 2022 21:56:02 GMT
+      Retry-After:
+      - '0'
+      Server:
+      - nginx/1.16.1
+      X-RateLimit-Limit:
+      - '120'
+      X-RateLimit-Remaining:
+      - '120'
+      X-RateLimit-Reset:
+      - '1655416563'
+    status:
+      code: 200
+      message: OK
+version: 1
