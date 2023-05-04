@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Host:
+      - api.clo.ru
+      User-Agent:
+      - 'libcloud/3.7.0 (CLO) '
+    method: POST
+    uri: https://api.clo.ru/v1/keypairs?name=test&public_key=ssh-ed25519+AAAAC3NzaC1lZDI1NTE5AAAAIOxp%2BMNcz%2Beb3xmdnSTicxmrvq2UpWN278vKgweDg1Ik+test
+  response:
+    body:
+      string: '{"code": 201, "title": "Created", "result": {"name": "test", "id":
+        "6e38910e-7bd6-4322-8cee-985df685097a", "public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxp+MNcz+eb3xmdnSTicxmrvq2UpWN278vKgweDg1Ik
+        test"}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '210'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 04 May 2023 04:43:35 GMT
+      Server:
+      - nginx/1.16.1
+    status:
+      code: 201
+      message: CREATED
+version: 1

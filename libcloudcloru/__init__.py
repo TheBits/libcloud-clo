@@ -2,6 +2,7 @@ from libcloud.common.base import ConnectionKey, JsonResponse
 from libcloud.common.types import InvalidCredsError
 from libcloud.compute.base import KeyPair, NodeDriver, NodeImage, NodeLocation
 from libcloud.utils.publickey import get_pubkey_openssh_fingerprint
+from libcloud.utils.py3 import httplib
 
 
 class CloResponse(JsonResponse):
@@ -10,6 +11,9 @@ class CloResponse(JsonResponse):
         if body["code"] == 401:
             raise InvalidCredsError(body["error"]["message"])
         return body["error"]["message"]
+
+    def success(self):
+        return super().success() or self.status == httplib.NO_CONTENT
 
 
 class CloConnection(ConnectionKey):
@@ -70,10 +74,39 @@ class CloDriver(NodeDriver):
         for kp in response.object["results"]:
             key_pair = KeyPair(
                 name=kp["name"],
-                public_key=kp["key"],
-                fingerprint=get_pubkey_openssh_fingerprint(kp["key"]),
+                public_key=kp["public_key"],
+                fingerprint=get_pubkey_openssh_fingerprint(kp["public_key"]),
                 driver=self,
                 extra=dict(id=kp["id"]),
             )
             key_pairs.append(key_pair)
         return key_pairs
+
+    def delete_key_pair(self, key_pair):
+        keypair_id = key_pair.extra["id"]
+        url = f"/v1/keypairs/{keypair_id}/delete"
+        response = self.connection.request(url, method="DELETE")
+        return response.success()
+
+    def get_key_pair(self, name):
+        kps = self.list_key_pairs()
+        for kp in kps:
+            if kp.name == name:
+                return kp
+
+    def import_key_pair_from_string(self, name, key_material):
+        params = {
+            "name": name,
+            "public_key": key_material,
+        }
+        response = self.connection.request("v1/keypairs", method="POST", params=params)
+
+        kp = response.object["result"]
+        key_pair = KeyPair(
+            name=kp["name"],
+            public_key=kp["public_key"],
+            fingerprint=get_pubkey_openssh_fingerprint(kp["public_key"]),
+            driver=self,
+            extra=dict(id=kp["id"]),
+        )
+        return key_pair
