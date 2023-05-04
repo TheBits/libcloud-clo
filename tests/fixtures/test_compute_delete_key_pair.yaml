@@ -1,0 +1,68 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Connection:
+      - keep-alive
+      Host:
+      - api.clo.ru
+      User-Agent:
+      - 'libcloud/3.7.0 (CLO) '
+    method: GET
+    uri: https://api.clo.ru/v1/keypairs
+  response:
+    body:
+      string: '{"code": 200, "title": "OK", "results": [{"name": "test", "id": "6e38910e-7bd6-4322-8cee-985df685097a",
+        "public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxp+MNcz+eb3xmdnSTicxmrvq2UpWN278vKgweDg1Ik
+        test"}], "count": 1}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '220'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 04 May 2023 04:48:16 GMT
+      Server:
+      - nginx/1.16.1
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip,deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Host:
+      - api.clo.ru
+      User-Agent:
+      - 'libcloud/3.7.0 (CLO) '
+    method: DELETE
+    uri: https://api.clo.ru/v1/keypairs/6e38910e-7bd6-4322-8cee-985df685097a/delete
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 04 May 2023 04:48:16 GMT
+      Server:
+      - nginx/1.16.1
+    status:
+      code: 204
+      message: NO CONTENT
+version: 1

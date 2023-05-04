@@ -63,3 +63,21 @@ def test_compute_list_key_pairs_empty(credentials):
     clo = CloDriver(key=credentials)
     kps = clo.list_key_pairs()
     assert not kps
+
+
+@vcr_record
+def test_compute_import_key_pair_from_string(credentials):
+    clo = CloDriver(key=credentials)
+    pub_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxp+MNcz+eb3xmdnSTicxmrvq2UpWN278vKgweDg1Ik test"
+    KEY_NAME = "test"
+    kp = clo.import_key_pair_from_string(KEY_NAME, pub_key)
+    assert kp.fingerprint == "97:92:28:c1:37:23:b4:8c:d4:80:ff:92:a9:9f:8b:ef"
+    assert kp.name == KEY_NAME
+
+
+@vcr_record
+def test_compute_delete_key_pair(credentials):
+    clo = CloDriver(key=credentials)
+    kp = clo.get_key_pair("test")
+    deleted = clo.delete_key_pair(kp)
+    assert deleted
