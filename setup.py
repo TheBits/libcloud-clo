@@ -11,7 +11,7 @@ For all available methods, see [README at github](https://github.com/thebits/lib
 
 setuptools.setup(
     name="libcloudcloru",
-    version="0.0.1",
+    version="0.0.2",
     author="Sergey Mezentsev",
     author_email="thebits@yandex.ru",
     description="Libcloud driver for provdier clo.ru",
