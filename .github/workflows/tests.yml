@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v4
       - uses: actions/cache@v3
         with:
           path: |
@@ -31,4 +31,4 @@ jobs:
       - name: Install dependencies
         run: python -m pip install --disable-pip-version-check --progress-bar off tox
       - name: Run all envs
-        run: tox -p auto -e 'libcloud{30,31,32,33,34,35,36},pre-commit,coverage'
+        run: tox -p auto -e ALL
