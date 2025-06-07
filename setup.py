@@ -21,7 +21,7 @@ setuptools.setup(
     url="https://github.com/thebits/libcloud-clo",
     install_requires=["apache-libcloud>=3.0.0"],
     packages=setuptools.find_packages(),
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     classifiers=[
         "Intended Audience :: System Administrators",
         "Operating System :: OS Independent",
